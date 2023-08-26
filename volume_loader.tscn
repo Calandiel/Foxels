@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1fvn8past0"]
+
+[ext_resource type="Script" path="res://VolumeLoader.gd" id="1_dbskn"]
+[ext_resource type="Script" path="res://free_look_camera.gd" id="3_7vnvq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hs5jl"]
+
+[sub_resource type="Sky" id="Sky_8xxl2"]
+sky_material = SubResource("ProceduralSkyMaterial_hs5jl")
+
+[sub_resource type="Environment" id="Environment_cosll"]
+background_mode = 2
+sky = SubResource("Sky_8xxl2")
+
+[node name="VolumeLoader" type="Node3D"]
+script = ExtResource("1_dbskn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cosll")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.736499, -0.5558, -0.385558, 0.623823, 0.33768, 0.704853, -0.261562, -0.759644, 0.595422, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 32, 32, 64)
+script = ExtResource("3_7vnvq")
+default_velocity = 7.5
+boost_speed_multiplier = 6.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+shadow_enabled = true
+spot_range = 50.0
